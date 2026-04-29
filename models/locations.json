@@ -1,0 +1,506 @@
+[
+  {
+    "id": "1a967bdf-6271-4e1f-9316-a09317bb608f",
+    "name": "Rogers",
+    "lat": 44.682075710225305,
+    "lng": -8.166058426759292,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:40:03.508Z"
+  },
+  {
+    "id": "3d6e30c6-a9a6-491d-a21f-1b062cee3509",
+    "name": "Name",
+    "lat": 45.01997514654754,
+    "lng": -10.97708962782292,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:40:13.341Z"
+  },
+  {
+    "id": "0216821f-5194-4068-96ec-03564c7c5f2d",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:14.317Z"
+  },
+  {
+    "id": "d29a0ed8-4a8d-4767-aa0b-c4b8effb6378",
+    "name": "Madrid",
+    "lat": 40.401972,
+    "lng": -3.685297,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:15.423Z"
+  },
+  {
+    "id": "17085e99-0bda-4c89-9089-3e0a8c444f87",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:16.875Z"
+  },
+  {
+    "id": "68f70a79-026d-4f30-b751-3c0701331926",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.099Z"
+  },
+  {
+    "id": "6a34ca4a-55d0-487b-a173-cbf87209cdb0",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.274Z"
+  },
+  {
+    "id": "55e48157-e2b6-4050-a88f-6582df17c936",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.413Z"
+  },
+  {
+    "id": "b87ff86b-f457-4bda-8495-9bea11bc7600",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.591Z"
+  },
+  {
+    "id": "321caebb-41e4-40df-b759-008dc4363b73",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.780Z"
+  },
+  {
+    "id": "eb57ea46-c2db-42c0-ab91-e29d15b279c1",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:17.947Z"
+  },
+  {
+    "id": "bc9b23ec-f231-441c-9961-4585f9b82bb8",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:18.126Z"
+  },
+  {
+    "id": "47376d98-a4ab-41c5-945b-723b32a1d822",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:23.880Z"
+  },
+  {
+    "id": "316d69fd-d9f7-4623-a5e8-5299852ec18a",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.034Z"
+  },
+  {
+    "id": "57901aea-bdfc-4807-ac02-87ffba1b2014",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.200Z"
+  },
+  {
+    "id": "34b662c2-5583-4952-ba9c-ac8320428a0b",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.368Z"
+  },
+  {
+    "id": "2fba627a-363d-4c73-aa53-b88ac296cdd1",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.527Z"
+  },
+  {
+    "id": "2621709c-0b05-4ac8-8586-8514e2fc7996",
+    "name": "Madrid",
+    "lat": 40.401972,
+    "lng": -3.685297,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.716Z"
+  },
+  {
+    "id": "5202bf6c-758f-4209-8e31-135844cdc2a8",
+    "name": "Madrid",
+    "lat": 40.401972,
+    "lng": -3.685297,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:24.904Z"
+  },
+  {
+    "id": "3da6b942-fe44-485c-94a4-eb4aacd6b2eb",
+    "name": "Madrid",
+    "lat": 40.401972,
+    "lng": -3.685297,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:25.070Z"
+  },
+  {
+    "id": "e86725b6-8c3f-439e-adae-074117248cb6",
+    "name": "Madrid",
+    "lat": 40.401972,
+    "lng": -3.685297,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:25.227Z"
+  },
+  {
+    "id": "feeb88e6-fa84-4285-a344-6b20f0f8b061",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:25.754Z"
+  },
+  {
+    "id": "ea1be7b5-c1be-46eb-ac9d-790a612c77c9",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:25.917Z"
+  },
+  {
+    "id": "c98000bf-4de3-4169-9060-cae03c11d99a",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:26.220Z"
+  },
+  {
+    "id": "230161b7-c1e9-4a45-aaea-31ef2c2d8f93",
+    "name": "Porto",
+    "lat": 41.151952,
+    "lng": -8.621947,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:43:26.352Z"
+  },
+  {
+    "id": "863345d0-07a5-4cb6-9cce-8be4db7c153e",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:54:49.743Z"
+  },
+  {
+    "id": "b8e3105b-44ae-49ad-8cdf-c4967a53b351",
+    "name": "Minneapolis",
+    "lat": 44.977,
+    "lng": -93.265,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:54:55.211Z"
+  },
+  {
+    "id": "990fcffb-ab23-4776-89b2-2e0eb31ea9bf",
+    "name": "Minneapolis",
+    "lat": 44.977,
+    "lng": -93.265,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:54:55.879Z"
+  },
+  {
+    "id": "a61da933-0463-4180-a10c-a92fad4b9d34",
+    "name": "San Francisco",
+    "lat": 37.775,
+    "lng": -122.419,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:54:59.373Z"
+  },
+  {
+    "id": "8d34ed0a-b2df-4875-8718-758a3a0eedb6",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:05.159Z"
+  },
+  {
+    "id": "8e89635e-a6d2-4641-a11b-22fdc56f47b1",
+    "name": "Algiers",
+    "lat": 36.737,
+    "lng": 3.087,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:11.528Z"
+  },
+  {
+    "id": "6f3e9c9a-e862-418b-bb16-abe4196098e1",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:17.894Z"
+  },
+  {
+    "id": "aa71c9aa-ad29-4310-b5b8-e519ea84a0ea",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:18.856Z"
+  },
+  {
+    "id": "72a669db-b52f-4214-8d57-98488128f530",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:19.657Z"
+  },
+  {
+    "id": "9001ce32-60d0-4d42-a6dc-1d04ecaa120d",
+    "name": "Tokyo",
+    "lat": 35.689,
+    "lng": 139.692,
+    "type": "visited",
+    "createdAt": "2026-04-28T04:55:20.802Z"
+  },
+  {
+    "id": "b42db63a-54d8-4597-a050-db2db00ed83a",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:55:25.043Z"
+  },
+  {
+    "id": "c189adcd-5441-436d-8443-ad985bf03c52",
+    "name": "Cali",
+    "lat": 3.436,
+    "lng": -76.522,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:55:37.654Z"
+  },
+  {
+    "id": "e9360536-e832-489e-b180-29b88a949837",
+    "name": "Milwaukee",
+    "lat": 43.042,
+    "lng": -87.905,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:20.090Z"
+  },
+  {
+    "id": "207ed374-af84-4209-87ae-04d011e171ee",
+    "name": "Denver",
+    "lat": 39.739,
+    "lng": -104.984,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:21.690Z"
+  },
+  {
+    "id": "d0037d4b-4a94-4f68-8739-70b2ad9d57e3",
+    "name": "Portland",
+    "lat": 45.524,
+    "lng": -122.681,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:25.781Z"
+  },
+  {
+    "id": "e0b107e3-59da-471d-8e00-9cf200d4652c",
+    "name": "San Francisco",
+    "lat": 37.775,
+    "lng": -122.419,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:29.364Z"
+  },
+  {
+    "id": "92fb3b33-ac1e-4c93-b64f-a5fc8f167704",
+    "name": "San Francisco",
+    "lat": 37.775,
+    "lng": -122.419,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:30.677Z"
+  },
+  {
+    "id": "f5ef6e22-ac28-45db-9ce4-a565b31c575d",
+    "name": "San Francisco",
+    "lat": 37.775,
+    "lng": -122.419,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:31.374Z"
+  },
+  {
+    "id": "a65f0700-56db-4b8e-a0b0-e0d5ce1f2772",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:31.666Z"
+  },
+  {
+    "id": "5e78061d-6356-4ca6-ab9f-fbd8ca70c295",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:31.828Z"
+  },
+  {
+    "id": "6b8a23d3-cce0-461d-a41e-bf67da010423",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:33.555Z"
+  },
+  {
+    "id": "32f7626d-4271-47d2-8a0c-f57fef9ec782",
+    "name": "Athens",
+    "lat": 37.984,
+    "lng": 23.728,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:35.988Z"
+  },
+  {
+    "id": "8101da1b-5e13-4996-a73c-ee4ad045c1f9",
+    "name": "Dakar",
+    "lat": 14.693,
+    "lng": -17.447,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:37.941Z"
+  },
+  {
+    "id": "6cdb188e-b2e1-4f11-85f0-2620806758d9",
+    "name": "Boston",
+    "lat": 42.36,
+    "lng": -71.057,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:41.777Z"
+  },
+  {
+    "id": "c3ad7e59-318c-4f23-9c7b-196b197b229e",
+    "name": "Boston",
+    "lat": 42.36,
+    "lng": -71.057,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:42.899Z"
+  },
+  {
+    "id": "923d178d-a61e-4b06-b8a0-c1d6142909fb",
+    "name": "Boston",
+    "lat": 42.36,
+    "lng": -71.057,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:44.117Z"
+  },
+  {
+    "id": "f457c15b-9a57-4153-9f04-ce8735958c8b",
+    "name": "New York",
+    "lat": 40.713,
+    "lng": -74.006,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:45.434Z"
+  },
+  {
+    "id": "f8925c91-c9ce-4d06-a05b-7bceb8a7d2bb",
+    "name": "Milwaukee",
+    "lat": 43.042,
+    "lng": -87.905,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:58:47.409Z"
+  },
+  {
+    "id": "48183c1d-8566-438b-a2e6-614f56317cf5",
+    "name": "Boston",
+    "lat": 42.36,
+    "lng": -71.057,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:18.924Z"
+  },
+  {
+    "id": "ce846360-751d-4b63-b26e-32ea3a692561",
+    "name": "Dublin",
+    "lat": 53.332,
+    "lng": -6.249,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:19.768Z"
+  },
+  {
+    "id": "d2bf60bd-b866-4a99-9239-35d7062fba3c",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:21.563Z"
+  },
+  {
+    "id": "dbe484a2-3c25-4ab3-96bf-8e8dd4230b4f",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:22.321Z"
+  },
+  {
+    "id": "3a9f4acb-4e6b-4def-aba2-2ef01dbf8493",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:23.202Z"
+  },
+  {
+    "id": "534300e2-e92e-4cb8-b6b8-0b2c2f306505",
+    "name": "Sapporo",
+    "lat": 43.064,
+    "lng": 141.347,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:24.152Z"
+  },
+  {
+    "id": "4f22627c-9d8a-4c90-850e-a24ddfdfade2",
+    "name": "Tijuana",
+    "lat": 32.534,
+    "lng": -117.018,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:26.214Z"
+  },
+  {
+    "id": "9f4aa79f-4732-479f-a766-142ea7565e99",
+    "name": "Antananarivo",
+    "lat": -18.879,
+    "lng": 47.507,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:27.862Z"
+  },
+  {
+    "id": "e6b7ed92-df41-4998-9608-654aaab6b55d",
+    "name": "Antananarivo",
+    "lat": -18.879,
+    "lng": 47.507,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:29.497Z"
+  },
+  {
+    "id": "340b1650-b85f-4646-b316-fbfa16607466",
+    "name": "Antananarivo",
+    "lat": -18.879,
+    "lng": 47.507,
+    "type": "wishlist",
+    "createdAt": "2026-04-28T04:59:36.301Z"
+  }
+]

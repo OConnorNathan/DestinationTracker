@@ -1,0 +1,24 @@
+{
+  "name": "destination-tracker",
+  "version": "1.0.0",
+  "description": "Travel destination tracker with Leaflet",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "canvas": "^3.2.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "fs-extra": "^11.2.0",
+    "html-pdf-node": "^1.0.8",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
+  }
+}
