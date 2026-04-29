@@ -1,46 +1,27 @@
-const { v4: uuid } = require('uuid');
-
-const locations = [];
-
-exports.getAll = async () => {
-    return locations;
-};
-
-exports.add = async (location) => {
-    const { name, lat, lng, type } = location;
-
-    if (!name || !type) {
-        throw new Error('Name and type are required.');
+class Collector {
+    async getAllLocations() {
+        const response = await fetch('/api/locations');
+        return response.json();
     }
 
-    if (!['visited', 'wishlist'].includes(type)) {
-        throw new Error('Type must be visited or wishlist.');
+    async storeVisitedLocation(name, coords) {
+        return this.#storeLocation({ name, lat: coords.lat, lng: coords.lng, type: 'visited' });
     }
 
-    if (typeof lat !== 'number' || typeof lng !== 'number') {
-        throw new Error('Latitude and longitude must be numbers.');
+    async storeWishlistLocation(name, coords) {
+        return this.#storeLocation({ name, lat: coords.lat, lng: coords.lng, type: 'wishlist' });
     }
 
-    const newLocation = {
-        id: uuid(),
-        name,
-        lat,
-        lng,
-        type,
-        createdAt: new Date().toISOString()
-    };
-
-    locations.push(newLocation);
-
-    return newLocation;
-};
-
-exports.remove = async (id) => {
-    const index = locations.findIndex(loc => loc.id === id);
-
-    if (index === -1) {
-        throw new Error('Location not found.');
+    async removeLocation(id) {
+        await fetch(`/api/locations/${id}`, { method: 'DELETE' });
     }
 
-    locations.splice(index, 1);
-};
+    async #storeLocation({ name, lat, lng, type }) {
+        const response = await fetch('/api/locations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, lat, lng, type })
+        });
+        return response.json();
+    }
+}

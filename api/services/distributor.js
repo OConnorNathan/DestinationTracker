@@ -1,5 +1,5 @@
 const { createCanvas } = require('canvas');
-const collector = require('./collector');
+const locationService = require('./locationService');
 
 const W = 1920;
 const H = 960;
@@ -49,7 +49,7 @@ function drawFeature(ctx, feature) {
 }
 
 exports.exportMap = async () => {
-    const locations = await collector.getAll();
+    const locations = await locationService.getAll();
 
     const geoRes = await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson');
     const geoData = await geoRes.json();

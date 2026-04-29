@@ -1,40 +1,65 @@
-const collector = require('../services/collector');
-const distributor = require('../services/distributor');
+class Controller {
+    #cartographer;
+    #collector;
+    #artist;
 
-exports.getAllLocations = async (req, res, next) => {
-    try {
-        const locations = await collector.getAll();
-        res.json(locations);
-    } catch (error) {
-        next(error);
+    constructor(cartographer, collector) {
+        this.#cartographer = cartographer;
+        this.#collector = collector;
     }
-};
 
-exports.addLocation = async (req, res, next) => {
-    try {
-        const location = await collector.add(req.body);
-        res.status(201).json(location);
-    } catch (error) {
-        next(error);
+    setArtist(artist) {
+        this.#artist = artist;
     }
-};
 
-exports.deleteLocation = async (req, res, next) => {
-    try {
-        await collector.remove(req.params.id);
-        res.status(204).send();
-    } catch (error) {
-        next(error);
+    async addVisitedLocation(name, coords) {
+        await this.#collector.storeVisitedLocation(name, coords);
+        await this.loadAll();
     }
-};
 
-exports.exportLocations = async (req, res, next) => {
-    try {
-        const buffer = await distributor.exportMap();
-        res.setHeader('Content-Type', 'image/jpeg');
-        res.setHeader('Content-Disposition', `attachment; filename="destinations-${Date.now()}.jpg"`);
-        res.send(buffer);
-    } catch (error) {
-        next(error);
+    async addWishlistLocation(name, coords) {
+        await this.#collector.storeWishlistLocation(name, coords);
+        await this.loadAll();
     }
-};
+
+    async addLocationByName(cityName, type) {
+        const city = this.#cartographer.findCityByName(cityName);
+        if (!city) return { success: false, error: `City "${cityName.trim()}" not found.` };
+        const name = this.#cartographer.formatCityName(city);
+        const coords = { lat: parseFloat(city.lat), lng: parseFloat(city.lon) };
+        if (type === 'wishlist') {
+            await this.#collector.storeWishlistLocation(name, coords);
+        } else {
+            await this.#collector.storeVisitedLocation(name, coords);
+        }
+        await this.loadAll();
+        return { success: true };
+    }
+
+    async removeLocation(id) {
+        await this.#collector.removeLocation(id);
+        await this.loadAll();
+    }
+
+    processCoordinates(hitPoint) {
+        const { lat, lng } = this.#cartographer.translateToCoords(hitPoint);
+        const city = this.#cartographer.nearestCity(lat, lng);
+        const name = city
+            ? this.#cartographer.formatCityName(city)
+            : this.#cartographer.buildCoordLabel(lat, lng);
+        return { lat, lng, name };
+    }
+
+    findNearestMarker(lat, lng, locations) {
+        return this.#cartographer.nearestLocation(lat, lng, locations);
+    }
+
+    handleExport() {
+        this.#artist.generatePrintableMap();
+    }
+
+    async loadAll() {
+        const locations = await this.#collector.getAllLocations();
+        if (this.#artist) this.#artist.refresh(locations);
+    }
+}

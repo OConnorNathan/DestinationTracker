@@ -1,21 +1,16 @@
+const GLOBE_RADIUS = 100;
+const MARKER_COLORS = {
+    visited: '#00cfff',
+    wishlist: '#ff3333'
+};
+
 class Location {
-    constructor(id, name, lat, lng, type) {
+    constructor(id, { lat, lng, name }, type) {
         this.id = id;
-        this.name = name;
         this.lat = lat;
         this.lng = lng;
+        this.name = name;
         this.type = type;
-    }
-
-    toJSON() {
-        return {
-            id: this.id,
-            name: this.name,
-            lat: this.lat,
-            lng: this.lng,
-            type: this.type
-        };
+        this.color = MARKER_COLORS[type] ?? MARKER_COLORS.visited;
     }
 }
-
-module.exports = Location;
