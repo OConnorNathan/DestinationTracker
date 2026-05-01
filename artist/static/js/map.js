@@ -65,8 +65,10 @@ class Artist {
         const a = document.createElement('a');
         a.href = url;
         a.download = `destinations-${Date.now()}.jpg`;
+        document.body.appendChild(a);
         a.click();
-        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
     }
 
     static #toLatLng(hitPoint) {
