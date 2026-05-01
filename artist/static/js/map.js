@@ -5,7 +5,6 @@ class Artist {
     #globe;
     #cityLabels = [];
     #userLocations = [];
-    #controller;
     #radius = 300;
     #theta = 0;
     #phi = Math.PI / 2;
@@ -40,10 +39,6 @@ class Artist {
         });
     }
 
-    setController(controller) {
-        this.#controller = controller;
-    }
-
     setCityLabels(labels) {
         this.#cityLabels = labels;
         this.#updateGlobe();
@@ -54,8 +49,50 @@ class Artist {
         this.#updateGlobe();
     }
 
-    generatePrintableMap() {
-        window.location.href = '/api/locations/export';
+    async loadLocations() {
+        const locations = await fetch('/api/locations').then(r => r.json());
+        this.refresh(locations);
+    }
+
+    setExportLoading(loading) {
+        const btn = document.getElementById('exportBtn');
+        btn.disabled = loading;
+        btn.textContent = loading ? 'Exporting...' : 'Export Map';
+    }
+
+    downloadExport(blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `destinations-${Date.now()}.jpg`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    static #toLatLng(hitPoint) {
+        const a = Math.atan2(hitPoint.z, hitPoint.x);
+        const lat = 90 - Math.acos(hitPoint.y / GLOBE_RADIUS) * (180 / Math.PI);
+        const lng = 90 - a * (180 / Math.PI) - (a < -Math.PI / 2 ? 360 : 0);
+        return { lat, lng };
+    }
+
+    async #handleGlobeClick(hitPoint) {
+        const { lat, lng } = Artist.#toLatLng(hitPoint);
+        const nearest = await fetch(`/api/locations/nearest?lat=${lat}&lng=${lng}`).then(r => r.json());
+        if (nearest) {
+            await fetch(`/api/locations/${nearest.id}`, { method: 'DELETE' });
+            await this.loadLocations();
+        }
+    }
+
+    async #handleGlobeContextMenu(hitPoint, type) {
+        const { lat, lng } = Artist.#toLatLng(hitPoint);
+        await fetch('/api/locations/bycoords', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lat, lng, type })
+        });
+        await this.loadLocations();
     }
 
     #updateCamera() {
@@ -77,50 +114,37 @@ class Artist {
         const fontSize = 90;
         const padding = 10;
         const dotR = 22;
-        const dotSlot = dotR * 2 + padding; // The space reserved for the bullet point
+        const dotSlot = dotR * 2 + padding;
 
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         ctx.font = `${fontSize}px "Segoe UI", "Arial Unicode MS", Arial, sans-serif`;
-        
         const textWidth = Math.ceil(ctx.measureText(d.name).width) || 80;
 
-        // Standardize: Both types now use the same width calculation
         canvas.width = dotSlot + textWidth + padding * 2;
         canvas.height = fontSize + padding * 2;
-
-        // Standardize: Both types start text at the exact same X position
         const textX = dotSlot + padding;
 
         ctx.font = `${fontSize}px "Segoe UI", "Arial Unicode MS", Arial, sans-serif`;
         ctx.fillStyle = color;
         ctx.textBaseline = 'middle';
-
-        // Only draw the dot for major cities (non-user locations)
-        // If you want dots for both, just remove the 'if (!isLocation)' check
         if (!isLocation) {
             ctx.beginPath();
             ctx.arc(padding + dotR, canvas.height / 2, dotR, 0, Math.PI * 2);
             ctx.fill();
         }
-
         ctx.fillText(d.name, textX, canvas.height / 2);
 
         const texture = new THREE.CanvasTexture(canvas);
         const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false });
         const sprite = new THREE.Sprite(mat);
-
-        // Standardize: Use the same base height for both to ensure consistent vertical scaling
-        const baseH = 2.5; 
+        const baseH = 2.5;
         const baseW = (canvas.width / canvas.height) * baseH;
-
         const anchorX = (padding + dotR) / canvas.width;
         sprite.center.set(anchorX, 0.5);
-
         sprite.userData.baseW = baseW;
         sprite.userData.baseH = baseH;
         sprite.scale.set(baseW * this.#labelScale, baseH * this.#labelScale, 1);
-
         return sprite;
     }
 
@@ -233,27 +257,18 @@ class Artist {
             if (e.button === 0) {
                 if (!this.#isDragging) {
                     const hitPoint = this.#raycastGlobe(e.clientX, e.clientY);
-                    if (hitPoint) {
-                        const { lat, lng } = this.#controller.processCoordinates(hitPoint);
-                        const nearest = this.#controller.findNearestMarker(lat, lng, this.#userLocations);
-                        if (nearest) this.#controller.removeLocation(nearest.id);
-                    }
+                    if (hitPoint) this.#handleGlobeClick(hitPoint);
                 }
                 this.#isDragging = false;
             }
         });
 
-        el.addEventListener('contextmenu', async (e) => {
+        el.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             const hitPoint = this.#raycastGlobe(e.clientX, e.clientY);
             if (!hitPoint) return;
-            const { lat, lng, name } = this.#controller.processCoordinates(hitPoint);
             const type = document.getElementById('locationType').value;
-            if (type === 'wishlist') {
-                await this.#controller.addWishlistLocation(name, { lat, lng });
-            } else {
-                await this.#controller.addVisitedLocation(name, { lat, lng });
-            }
+            this.#handleGlobeContextMenu(hitPoint, type);
         });
     }
 
@@ -266,77 +281,59 @@ class Artist {
     }
 
     #loadBorders() {
-        fetch('https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json')
-            .then(r => r.json())
-            .then(usData => {
-                fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
-                    .then(r => r.json())
-                    .then(worldData => {
-                        this.#globe.polygonsData([...worldData.features, ...usData.features]);
-                    });
-            });
+        Promise.all([
+            fetch('/static/data/us-states.json').then(r => r.json()),
+            fetch('/static/data/world.geojson').then(r => r.json())
+        ])
+        .then(([usData, worldData]) => {
+            this.#globe.polygonsData([...worldData.features, ...usData.features]);
+        })
+        .catch(err => console.warn('Border data unavailable:', err));
     }
 }
 
 window.addEventListener('load', async () => {
-    const cartographer = new Cartographer();
-    const collector = new Collector();
-    const controller = new Controller(cartographer, collector);
-    const artist = new Artist(document.getElementById('map'));
-
-    controller.setArtist(artist);
-    artist.setController(controller);
-
-    // Wire up city name input
     const cityInput = document.getElementById('cityInput');
     const cityError = document.getElementById('cityError');
+    const artist = new Artist(document.getElementById('map'));
+
+    try {
+        artist.setCityLabels(await fetch('/api/cities/labels').then(r => r.json()));
+    } catch {
+        console.warn('City labels unavailable');
+    }
+
+    await artist.loadLocations();
 
     async function addCityByName() {
-        const result = await controller.addLocationByName(
-            cityInput.value,
-            document.getElementById('locationType').value
-        );
-        if (result.success) {
+        const res = await fetch('/api/locations/byname', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: cityInput.value, type: document.getElementById('locationType').value })
+        });
+        if (res.ok) {
             cityInput.value = '';
             cityError.style.display = 'none';
+            await artist.loadLocations();
         } else {
-            cityError.textContent = result.error;
+            const { error } = await res.json();
+            cityError.textContent = error;
             cityError.style.display = 'block';
         }
     }
 
     cityInput.addEventListener('keydown', e => { if (e.key === 'Enter') addCityByName(); });
-    document.getElementById('exportBtn').addEventListener('click', () => controller.handleExport());
 
-    // Load cities dataset, give Cartographer all cities 10k+ for lookups
-    const data = await fetch('https://raw.githubusercontent.com/lmfmaier/cities-json/master/cities500.json')
-        .then(r => r.json());
-
-    const largestCountryCities = new Map();
-    const largestUSStateCities = new Map();
-    const megacities = [];
-
-    for (const city of data) {
-        const pop = Number(city.pop);
-        if (Number.isNaN(pop)) continue;
-        if (pop > 10000000) megacities.push(city);
-        if (city.country === 'US' && city.admin1) {
-            const existing = largestUSStateCities.get(city.admin1);
-            if (!existing || pop > Number(existing.pop)) largestUSStateCities.set(city.admin1, city);
-        } else {
-            const existing = largestCountryCities.get(city.country);
-            if (!existing || pop > Number(existing.pop)) largestCountryCities.set(city.country, city);
+    document.getElementById('exportBtn').addEventListener('click', async () => {
+        artist.setExportLoading(true);
+        try {
+            const res = await fetch('/api/locations/export');
+            if (!res.ok) throw new Error(res.statusText);
+            artist.downloadExport(await res.blob());
+        } catch (err) {
+            alert(`Export failed: ${err.message}`);
+        } finally {
+            artist.setExportLoading(false);
         }
-    }
-
-    cartographer.setCities(data.filter(c => Number(c.pop) > 10000));
-
-    const allLabelsMap = new Map();
-    [...megacities, ...largestCountryCities.values(), ...largestUSStateCities.values()].forEach(c => {
-        const key = `${c.name}-${c.lat}-${c.lon}`;
-        allLabelsMap.set(key, { name: c.name, lat: parseFloat(c.lat), lng: parseFloat(c.lon) });
     });
-
-    artist.setCityLabels(Array.from(allLabelsMap.values()));
-    await controller.loadAll();
 });

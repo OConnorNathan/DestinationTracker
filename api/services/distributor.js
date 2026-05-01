@@ -1,5 +1,11 @@
+const fs = require('fs');
+const path = require('path');
 const { createCanvas } = require('canvas');
 const locationService = require('./locationService');
+
+const worldGeoJson = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../../artist/static/data/world.geojson'), 'utf8')
+);
 
 const W = 1920;
 const H = 960;
@@ -51,9 +57,6 @@ function drawFeature(ctx, feature) {
 exports.exportMap = async () => {
     const locations = await locationService.getAll();
 
-    const geoRes = await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson');
-    const geoData = await geoRes.json();
-
     const canvas = createCanvas(W, H);
     const ctx = canvas.getContext('2d');
 
@@ -64,7 +67,7 @@ exports.exportMap = async () => {
     ctx.strokeStyle = '#4a7a38';
     ctx.lineWidth = 0.5;
 
-    for (const feature of geoData.features) {
+    for (const feature of worldGeoJson.features) {
         drawFeature(ctx, feature);
     }
 
