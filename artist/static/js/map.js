@@ -182,7 +182,7 @@ class Artist {
 
     #setupGlobe() {
         this.#globe = new ThreeGlobe({ camera: this.#camera, renderer: this.#renderer })
-            .globeImageUrl('https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg')
+            .globeImageUrl('/static/textures/8k_earth_daymap.jpg')
             .bumpImageUrl('https://raw.githubusercontent.com/turban/webgl-earth/master/images/elev_bump_4k.jpg')
             .showAtmosphere(true)
             .pointLat('lat')
